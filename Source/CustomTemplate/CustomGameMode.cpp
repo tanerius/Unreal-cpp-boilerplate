@@ -6,6 +6,7 @@
 #include "CustomPlayerController.h"
 #include "CustomGameState.h"
 #include "CustomPlayerState.h"
+#include "CustomHUD.h"
 
 
 ACustomGameMode::ACustomGameMode(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
@@ -33,4 +34,7 @@ void ACustomGameMode::AssignOtherClasses()
 
 	// Assign a custom PlayerState controller
 	PlayerStateClass = ACustomPlayerState::StaticClass();
+
+	// Assign a custom HUD Class
+	HUDClass = ACustomHUD::StaticClass();
 }
