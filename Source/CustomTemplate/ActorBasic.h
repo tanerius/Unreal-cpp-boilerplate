@@ -78,6 +78,15 @@ public:
 	class UTextRenderComponent* SomeText;
 
 
+	/**
+	* Custom actor component
+	* Lets add a basic actor component to this actor 
+	*
+	*/
+	UPROPERTY(Category = AttributesCustom, EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class UCustomActorComponent* CustomComponent = nullptr;
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

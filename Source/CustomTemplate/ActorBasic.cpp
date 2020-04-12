@@ -6,6 +6,9 @@
 // the following we need for UTextRenderComponent
 #include "Components/TextRenderComponent.h"
 
+// The following is needed for CustomComponent 
+#include "CustomActorComponent.h"
+
 // Sets default values
 AActorBasic::AActorBasic()
 {
@@ -26,6 +29,11 @@ AActorBasic::AActorBasic()
 	//SomeText->SetText(FText::Format(FText("Score: {0}"), FText::AsNumber(0));
 	SomeText->SetText(FText::FromString(TEXT("Dynamically added text here")));
 	SomeText->SetupAttachment(BasicActorRoot);
+
+
+	// Initialize the custom component
+	CustomComponent = CreateDefaultSubobject<UCustomActorComponent>(TEXT("MyComponent0"));
+	
 
 }
 
