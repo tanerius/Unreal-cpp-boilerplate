@@ -8,6 +8,7 @@
 
 // The following is needed for CustomComponent 
 #include "CustomActorComponent.h"
+#include "CustomPlayerController.h"
 
 // Sets default values
 AActorBasic::AActorBasic()
@@ -33,14 +34,30 @@ AActorBasic::AActorBasic()
 
 	// Initialize the custom component
 	CustomComponent = CreateDefaultSubobject<UCustomActorComponent>(TEXT("MyComponent0"));
+
+	
 	
 
+}
+
+void AActorBasic::OnTenSecondsPassed_Implementation(int32 time)
+{
+	FString actorName = GetActorLabel();
+	UE_LOG(LogTemp, Warning, TEXT("Event fired %d %s"), time, *actorName);
 }
 
 // Called when the game starts or when spawned
 void AActorBasic::BeginPlay()
 {
 	Super::BeginPlay();
+
+	// Bind to delegates
+	ACustomPlayerController* cpc = Cast<ACustomPlayerController>(GetWorld()->GetFirstPlayerController());
+	if (cpc)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("AActorBasic::OnTenSecondsPassed bound to delegate"));
+		cpc->TenSeconds_OnPassed.AddUObject(this, &AActorBasic::OnTenSecondsPassed);
+	}
 	
 }
 
