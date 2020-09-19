@@ -14,4 +14,12 @@ class CUSTOMTEMPLATE_API ACustomPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 	
+	UUserWidget* MainMenuWidget = nullptr;
+	TSubclassOf<class UUserWidget> MainMenuWidgetClass;
+
+public:
+	ACustomPlayerController();
+
+	UFUNCTION(BlueprintCallable, Category="Template")
+	void DisplayMainMenu();
 };
