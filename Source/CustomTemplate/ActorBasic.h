@@ -87,6 +87,16 @@ public:
 	class UCustomActorComponent* CustomComponent = nullptr;
 
 
+	/**
+	* Custom actor component
+	* Lets add a basic actor component to this actor
+	*
+	*/
+	UFUNCTION(BlueprintNativeEvent)
+	void OnTenSecondsPassed(int32 time);
+	void OnTenSecondsPassed_Implementation(int32 time);
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

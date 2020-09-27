@@ -1,4 +1,4 @@
-# Unreal Engine 4.2x C++ Boilerplate
+# Unreal Engine 4.25 C++ Boilerplate
 
 One of the most frustrating things about Unreal Engine is starting up an empty project where you need to st up and connect all the scafolding. Especially if you are trying to work it out in C++. There are web sites out there that help to quickly set up, but I created this repo so that i can keep it handy each time.  
   
