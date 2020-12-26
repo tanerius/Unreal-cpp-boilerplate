@@ -38,6 +38,30 @@ void ACustomPlayerController::DisplayMainMenu()
 	}
 }
 
+void ACustomPlayerController::DoSpwan()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Fired action DoSpawn"));
+}
+
+
+void ACustomPlayerController::SampleAxisEvent(float Value)
+{
+	if (Value > 0.0f)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Fired axis SampleAxisEvent with value %f"), Value);
+	}
+}
+
+void ACustomPlayerController::SetupInputComponent()
+{
+	Super::SetupInputComponent();
+	// Sample for binding an action key to player controller
+	InputComponent->BindAction("SpawnSamplePawn", IE_Pressed, this, &ACustomPlayerController::DoSpwan);
+	// Sample for binding an axis - handler must have a float as a parameter
+	InputComponent->BindAxis("AxisMappingSample",  this, &ACustomPlayerController::SampleAxisEvent);
+	UE_LOG(LogTemp, Warning, TEXT("Called ACustomPlayerController::SetupInputComponent("));
+}
+
 // Called every frame
 void ACustomPlayerController::Tick(float DeltaTime)
 {

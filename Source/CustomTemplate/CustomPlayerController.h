@@ -30,6 +30,12 @@ public:
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	
+	// handle input 
+	virtual void SetupInputComponent() override;
+
+	void DoSpwan(); // action event handler
+	void SampleAxisEvent(float Value); // axis event handler
 
 	/*
 	* Add a single param delegate tot this actor
