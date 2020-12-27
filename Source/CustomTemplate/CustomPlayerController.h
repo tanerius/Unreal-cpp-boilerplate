@@ -22,6 +22,16 @@ class CUSTOMTEMPLATE_API ACustomPlayerController : public APlayerController
 	float timerCounter;
 	int32 timeOffset = 1;
 
+private:
+
+	// A variable to hold the blueprint class od the sphere from which we can spawn shperes in the world
+	TSubclassOf<class AActor> SphereActorBP = nullptr;
+	float m_initialSpawnPlace = 100.0f;
+
+	// The following weak pointer will hold a reference to the spawned 
+	// AActor and will have IsValud() == true if actor is spawned
+	TWeakObjectPtr<AActor> WeakPointerToActor;
+
 public:
 	ACustomPlayerController();
 

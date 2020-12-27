@@ -13,6 +13,7 @@ ACustomPlayerController::ACustomPlayerController()
 	bEnableTouchEvents = true;
 	DefaultMouseCursor = EMouseCursor::Crosshairs;
 	timerCounter = 0.0f;
+	m_initialSpawnPlace = 100.0f;
 
 	PrimaryActorTick.bCanEverTick = true;
 	
@@ -20,6 +21,19 @@ ACustomPlayerController::ACustomPlayerController()
 	FStringClassReference MyWidgetClassRef(TEXT("/Game/Widgets/MainMenuWidget.MainMenuWidget_C"));
 	// Get the widget class
 	MainMenuWidgetClass = MyWidgetClassRef.TryLoadClass<UUserWidget>();
+
+	// get the sphere blueprint class and assign a reference to my variable
+	static ConstructorHelpers::FObjectFinder<UBlueprint> ItemBlueprint(TEXT("Blueprint'/Game/Blueprints/BP_Sphere.BP_Sphere'"));
+	if (ItemBlueprint.Object) {
+		SphereActorBP = (UClass*)ItemBlueprint.Object->GeneratedClass;
+		UE_LOG(LogTemp, Warning, TEXT("Sphere blueprint assigned"));
+	}
+	else
+	{
+		SphereActorBP = nullptr;
+		UE_LOG(LogTemp, Warning, TEXT("Sphere blueprint not assigned correctly"));
+	}
+	 
 }
 
 void ACustomPlayerController::DisplayMainMenu()
@@ -41,6 +55,27 @@ void ACustomPlayerController::DisplayMainMenu()
 void ACustomPlayerController::DoSpwan()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Fired action DoSpawn"));
+	if (SphereActorBP != nullptr && !WeakPointerToActor.IsValid())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Spawning a sphere at %f"), m_initialSpawnPlace);
+		const FVector Location = { 0, 0, m_initialSpawnPlace };
+		const FRotator Rotation = FRotator(0, 0, 0);
+		// spawn an actor from a player conteroller
+		WeakPointerToActor = GetWorld()->SpawnActor(SphereActorBP, &Location, &Rotation);
+
+		m_initialSpawnPlace += 100.0f;
+	}
+	else
+	{
+		if (WeakPointerToActor.IsValid())
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Cannot spawn sphere - sphere has already spawned"));
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Cannot spawn sphere - sphere blueprint class is null"));
+		}
+	}
 }
 
 
