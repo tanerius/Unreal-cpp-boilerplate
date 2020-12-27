@@ -79,6 +79,24 @@ void ACustomPlayerController::DoSpwan()
 }
 
 
+void ACustomPlayerController::DestroySpwan()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Fired action DestroySpwan"));
+
+	// weak pointer isvalid will be false if actor cat be destroyed
+	if (WeakPointerToActor.IsValid())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Destroy"));
+		AActor* sphere = WeakPointerToActor.Get();
+		sphere->Destroy();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Sphere cannot be destroyed"));
+	}
+}
+
+
 void ACustomPlayerController::SampleAxisEvent(float Value)
 {
 	if (Value > 0.0f)
@@ -92,6 +110,10 @@ void ACustomPlayerController::SetupInputComponent()
 	Super::SetupInputComponent();
 	// Sample for binding an action key to player controller
 	InputComponent->BindAction("SpawnSamplePawn", IE_Pressed, this, &ACustomPlayerController::DoSpwan);
+
+	// DestroyActor
+	InputComponent->BindAction("DestroyActor", IE_Pressed, this, &ACustomPlayerController::DestroySpwan);
+
 	// Sample for binding an axis - handler must have a float as a parameter
 	InputComponent->BindAxis("AxisMappingSample",  this, &ACustomPlayerController::SampleAxisEvent);
 	UE_LOG(LogTemp, Warning, TEXT("Called ACustomPlayerController::SetupInputComponent("));

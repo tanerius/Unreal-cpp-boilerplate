@@ -45,6 +45,7 @@ public:
 	virtual void SetupInputComponent() override;
 
 	void DoSpwan(); // action event handler
+	void DestroySpwan(); // action event handler
 	void SampleAxisEvent(float Value); // axis event handler
 
 	/*
