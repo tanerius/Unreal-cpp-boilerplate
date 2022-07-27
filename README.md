@@ -1,4 +1,4 @@
-# Unreal Engine 4.25 C++ Boilerplate
+# Unreal Engine 5.0.x C++ Boilerplate
 
 One of the most frustrating things about Unreal Engine is starting up an empty project where you need to st up and connect all the scafolding. Especially if you are trying to work it out in C++. There are web sites out there that help to quickly set up, but I created this repo so that i can keep it handy each time.  
   
@@ -10,9 +10,9 @@ If it helped you, thumbs up! I am happy it did.
 
  Below is some info on Unreal Engine lingo and Framework descriptions.  
 
-## The Unreal Engine 4 Gameplay Framework
+## The Unreal Engine 5 Gameplay Framework
 
-The Gameplay Framework of Unreal Engine 4 provides a powerful set of classes to build your game. Your game can be a shooter, farm simulator, a deep RPG, it does not matter, the framework is very flexible and does some heavy lifting and sets some standards. It has a pretty deep integration with the engine so my immediate advice is to stick to these classes instead of trying to ‘roll your own’ game framework as you might with engine’s like Unity3D. Understanding this framework is critical in being successful and efficient is building your projects.
+The Gameplay Framework of Unreal Engine 5 provides a powerful set of classes to build your game. Your game can be a shooter, farm simulator, a deep RPG, it does not matter, the framework is very flexible and does some heavy lifting and sets some standards. It has a pretty deep integration with the engine so my immediate advice is to stick to these classes instead of trying to ‘roll your own’ game framework as you might with engine’s like Unity3D. Understanding this framework is critical in being successful and efficient is building your projects.
 
 ## Contents
 
@@ -36,11 +36,11 @@ The Gameplay Framework of Unreal Engine 4 provides a powerful set of classes to 
 
 Anyone who is interesting in building games with UE4, specifically those in C++, and would like to learn more about Unreal’s Gameplay Framework. This post walks through the core classes you will use from the Gameplay Framework and explains their use, how they get instantiated by the engine and how to access each of those classes from other parts of your game code. Most of the information presented applies to Blueprint as well.  
   
-If you are looking to get started with Unreal Engine 4, check out my earlier guide. I have another guide specific to Virtual Reality for beginners for those looking to educate themselves on the specifics of VR in Unreal Engine 4.  
+If you are looking to get started with Unreal Engine 5, check out my earlier guide. I have another guide specific to Virtual Reality for beginners for those looking to educate themselves on the specifics of VR in Unreal Engine 5.  
   
 ## Gameplay Framework Classes
 
-When building games in Unreal Engine 4 you will find a lot of boilerplate is already done for you. There are a handful of classes you will be using a lot in making games in C++ or Blueprint for that matter. I will walk through each of the classes, some neat features they hold and how to reference them from other places in your code. Most information in this guide applies to Blueprint all the same, although I use C++ snippets and some functions may not be exposed to Blueprint and therefor only relevant to C++ users.  
+When building games in Unreal Engine 5 you will find a lot of boilerplate is already done for you. There are a handful of classes you will be using a lot in making games in C++ or Blueprint for that matter. I will walk through each of the classes, some neat features they hold and how to reference them from other places in your code. Most information in this guide applies to Blueprint all the same, although I use C++ snippets and some functions may not be exposed to Blueprint and therefor only relevant to C++ users.  
 
 ## Actor
 
@@ -48,7 +48,7 @@ Perhaps the most used class in your game. Actor is the base for any object in yo
   
 Actor is the class you can network replicate (for multiplayer) and is easily done by calling SetReplicates(true) in your constructor. There is a lot that comes into play when dealing with effective networking in Actors, so I will not be able cover that in this blog.  
   
-Actors support the concept receiving of damage out of the box. Damage can be applied directly to the Actor using MyActor->TakeDamage(…) or via UGameplayStatics::ApplyDamage(…) note there are variations available for PointDamage (eg. hitscan weapons) and RadialDamage for things like explosions. There is a great intro to [Damage in UE4!](https://www.unrealengine.com/en-US/blog/damage-in-ue4) on the official Unreal Engine site.  
+Actors support the concept receiving of damage out of the box. Damage can be applied directly to the Actor using MyActor->TakeDamage(…) or via UGameplayStatics::ApplyDamage(…) note there are variations available for PointDamage (eg. hitscan weapons) and RadialDamage for things like explosions. There is a great intro to [Damage in UE5!](https://www.unrealengine.com/en-US/blog/damage-in-ue4) on the official Unreal Engine site.  
   
 You can easily spawn a new Actor instance in code by using `GetWorld()->SpawnActor<T>(…);` where T is the class to return, eg. AActor of one of your own types like AGadgetActor, AGameplayProp, etc.  
   
@@ -313,7 +313,7 @@ UGameplayStatics::WhateverFunction(); // static functions are easily accessed an
 
 ## References
 
-Some further recommended reading for the gameplay framework and programming within Unreal Engine 4.  
+Some further recommended reading for the gameplay framework and programming within Unreal Engine 5.  
   
 * [Gameplay Framework Documentation!](https://docs.unrealengine.com/en-US/Programming/UnrealArchitecture/Reference/Classes/index.html)
 * [Gameplay Programming Documentation!](https://docs.unrealengine.com/en-US/Programming/UnrealArchitecture/index.html)
