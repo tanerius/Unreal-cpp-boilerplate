@@ -10,6 +10,10 @@ If it helped you, thumbs up! I am happy it did.
 
  Below is some info on Unreal Engine lingo and Framework descriptions.  
 
+## Previous Version Info
+
+Last version compatible with UE4 in this repo was 4.25. To keep everyone happy, this versino of the boilerplate can also be found under branch name `release/4.25`. All subsequent updates on the main branch would be against the newest engine version.
+
 ## The Unreal Engine 5 Gameplay Framework
 
 The Gameplay Framework of Unreal Engine 5 provides a powerful set of classes to build your game. Your game can be a shooter, farm simulator, a deep RPG, it does not matter, the framework is very flexible and does some heavy lifting and sets some standards. It has a pretty deep integration with the engine so my immediate advice is to stick to these classes instead of trying to ‘roll your own’ game framework as you might with engine’s like Unity3D. Understanding this framework is critical in being successful and efficient is building your projects.
@@ -34,7 +38,7 @@ The Gameplay Framework of Unreal Engine 5 provides a powerful set of classes to 
   
 ## Who is this for
 
-Anyone who is interesting in building games with UE4, specifically those in C++, and would like to learn more about Unreal’s Gameplay Framework. This post walks through the core classes you will use from the Gameplay Framework and explains their use, how they get instantiated by the engine and how to access each of those classes from other parts of your game code. Most of the information presented applies to Blueprint as well.  
+Anyone who is interesting in building games with UE5, specifically those in C++, and would like to learn more about Unreal’s Gameplay Framework. This post walks through the core classes you will use from the Gameplay Framework and explains their use, how they get instantiated by the engine and how to access each of those classes from other parts of your game code. Most of the information presented applies to Blueprint as well.  
   
 If you are looking to get started with Unreal Engine 5, check out my earlier guide. I have another guide specific to Virtual Reality for beginners for those looking to educate themselves on the specifics of VR in Unreal Engine 5.  
   
@@ -48,7 +52,7 @@ Perhaps the most used class in your game. Actor is the base for any object in yo
   
 Actor is the class you can network replicate (for multiplayer) and is easily done by calling SetReplicates(true) in your constructor. There is a lot that comes into play when dealing with effective networking in Actors, so I will not be able cover that in this blog.  
   
-Actors support the concept receiving of damage out of the box. Damage can be applied directly to the Actor using MyActor->TakeDamage(…) or via UGameplayStatics::ApplyDamage(…) note there are variations available for PointDamage (eg. hitscan weapons) and RadialDamage for things like explosions. There is a great intro to [Damage in UE5!](https://www.unrealengine.com/en-US/blog/damage-in-ue4) on the official Unreal Engine site.  
+Actors support the concept receiving of damage out of the box. Damage can be applied directly to the Actor using MyActor->TakeDamage(…) or via UGameplayStatics::ApplyDamage(…) note there are variations available for PointDamage (eg. hitscan weapons) and RadialDamage for things like explosions. There is a great intro to [Damage in UE5!](https://www.unrealengine.com/en-US/blog/damage-in-UE5) on the official Unreal Engine site.  
   
 You can easily spawn a new Actor instance in code by using `GetWorld()->SpawnActor<T>(…);` where T is the class to return, eg. AActor of one of your own types like AGadgetActor, AGameplayProp, etc.  
   
@@ -216,7 +220,7 @@ Spawned inside of PlayerController that owns the HUD via SpawnDefaultHUD (spawns
   
 ### Remarks
 
-I use this class less and less compared to pre-UE4 days, UMG can be handled via the PlayerController. Just keep in mind that for multiplayer games you do want to make sure the player controller IsLocalController() before spawning any widgets.  
+I use this class less and less compared to pre-UE5 days, UMG can be handled via the PlayerController. Just keep in mind that for multiplayer games you do want to make sure the player controller IsLocalController() before spawning any widgets.  
   
 ## World
 
