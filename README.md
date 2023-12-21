@@ -1,10 +1,10 @@
-# Unreal Engine 5.0.x C++ Boilerplate
+# Unreal Engine 5.x C++ Boilerplate
 
-One of the most frustrating things about Unreal Engine is starting up an empty project where you need to st up and connect all the scafolding. Especially if you are trying to work it out in C++. There are web sites out there that help to quickly set up, but I created this repo so that i can keep it handy each time.  
+One of the most frustrating things about Unreal Engine is starting up an empty project where you need to set up and connect all the scaffolding. Especially if you are trying to work it out in C++. There are websites out there that help to quickly set up, but I created this repo so that I can keep it handy each time.  
   
-All of the bolerplate code is Blueprint free. It is done entirely in C++.  
+All of the boilerplate code is Blueprint free. It is done entirely in C++.  
   
-This repo is a boilerplate of essential components already conencted with samples of how to do some pretty commonly asked stuff on the net.
+This repo is a boilerplate of essential components already connected with samples of how to do some pretty commonly asked stuff on the net.
   
 If it helped you, thumbs up! I am happy it did.  
 
@@ -12,11 +12,11 @@ If it helped you, thumbs up! I am happy it did.
 
 ## Previous Version Info
 
-Last version compatible with UE4 in this repo was 4.25. To keep everyone happy, this versino of the boilerplate can also be found under branch name `release/4.25`. All subsequent updates on the main branch would be against the newest engine version.
+All subsequent updates on the main branch would be against the newest engine version.
 
 ## The Unreal Engine 5 Gameplay Framework
 
-The Gameplay Framework of Unreal Engine 5 provides a powerful set of classes to build your game. Your game can be a shooter, farm simulator, a deep RPG, it does not matter, the framework is very flexible and does some heavy lifting and sets some standards. It has a pretty deep integration with the engine so my immediate advice is to stick to these classes instead of trying to ‘roll your own’ game framework as you might with engine’s like Unity3D. Understanding this framework is critical in being successful and efficient is building your projects.
+The Gameplay Framework of Unreal Engine 5 provides a powerful set of classes to build your game. Your game can be a shooter, farm simulator, a deep RPG, it does not matter, the framework is very flexible, does some heavy lifting, and sets some standards. It has a pretty deep integration with the engine so my immediate advice is to stick to these classes instead of trying to ‘roll your own’ game framework as you might with engines like Unity3D. Understanding this framework is critical to being successful and efficient in building your projects.
 
 ## Contents
 
@@ -38,19 +38,19 @@ The Gameplay Framework of Unreal Engine 5 provides a powerful set of classes to 
   
 ## Who is this for
 
-Anyone who is interesting in building games with UE5, specifically those in C++, and would like to learn more about Unreal’s Gameplay Framework. This post walks through the core classes you will use from the Gameplay Framework and explains their use, how they get instantiated by the engine and how to access each of those classes from other parts of your game code. Most of the information presented applies to Blueprint as well.  
+Anyone interested in building games with UE5, specifically those in C++, and would like to learn more about Unreal’s Gameplay Framework. This post walks through the core classes you will use from the Gameplay Framework and explains their use, how they get instantiated by the engine, and how to access each of those classes from other parts of your game code. Most of the information presented applies to Blueprint as well.  
   
 If you are looking to get started with Unreal Engine 5, check out my earlier guide. I have another guide specific to Virtual Reality for beginners for those looking to educate themselves on the specifics of VR in Unreal Engine 5.  
   
 ## Gameplay Framework Classes
 
-When building games in Unreal Engine 5 you will find a lot of boilerplate is already done for you. There are a handful of classes you will be using a lot in making games in C++ or Blueprint for that matter. I will walk through each of the classes, some neat features they hold and how to reference them from other places in your code. Most information in this guide applies to Blueprint all the same, although I use C++ snippets and some functions may not be exposed to Blueprint and therefor only relevant to C++ users.  
+When building games in Unreal Engine 5 you will find a lot of boilerplate is already done for you. There are a handful of classes you will be using a lot in making games in C++ or Blueprint for that matter. I will walk through each of the classes, some neat features they hold, and how to reference them from other places in your code. Most information in this guide applies to Blueprint all the same, although I use C++ snippets and some functions may not be exposed to Blueprint and therefore only relevant to C++ users.  
 
 ## Actor
 
-Perhaps the most used class in your game. Actor is the base for any object in your level including players, AI enemies, doors, walls, and gameplay objects. Actors are built-up using ActorComponents (see next section) like StaticMeshComponent, CharacterMovementComponent, ParticleComponent and tons more. Even classes like GameMode (see below) are Actors (even though a GameMode does not have a ‘real’ position in the world). Let’s talk about a few things you need to know about Actors.
+Perhaps the most used class in your game. An Actor is the base for any object in your level including players, AI enemies, doors, walls, and gameplay objects. Actors are built up using ActorComponents (see next section) like StaticMeshComponent, CharacterMovementComponent, ParticleComponent, and tons more. Even classes like GameMode (see below) are Actors (even though a GameMode does not have a ‘real’ position in the world). Let’s talk about a few things you need to know about Actors.
   
-Actor is the class you can network replicate (for multiplayer) and is easily done by calling SetReplicates(true) in your constructor. There is a lot that comes into play when dealing with effective networking in Actors, so I will not be able cover that in this blog.  
+Actor is the class you can network replicate (for multiplayer) and is easily done by calling SetReplicates(true) in your constructor. There is a lot that comes into play when dealing with effective networking in Actors, so I will not be able to cover that in this blog.  
   
 Actors support the concept receiving of damage out of the box. Damage can be applied directly to the Actor using MyActor->TakeDamage(…) or via UGameplayStatics::ApplyDamage(…) note there are variations available for PointDamage (eg. hitscan weapons) and RadialDamage for things like explosions. There is a great intro to [Damage in UE5!](https://www.unrealengine.com/en-US/blog/damage-in-UE5) on the official Unreal Engine site.  
   
@@ -69,16 +69,16 @@ SpawnParams.Instigator = Cast<APawn>(GetOwner());
 ASEquippableActor* NewItem = GetWorld()->SpawnActor<ASEquippableActor>(NewItemClass, SpawnTM, SpawnParams);
 ```
 
-There are many ways to get access to Actors, usually you would have a pointer/reference to the specific Actor you are interested in. In the sample above, we can keep the pointer to the equippable actor via the NewItem variable and start manipulating the Actor instance through that.
+There are many ways to get access to Actors, usually, you would have a pointer/reference to the specific Actor you are interested in. In the sample above, we can keep the pointer to the equippable actor via the NewItem variable and start manipulating the Actor instance through that.
 
-One especially useful function you may use when prototyping or getting to grips with the engine is UGameplayStatics::GetAllActorsOfClass(…) this lets you grab an array of all actors of the class you pass in (including the derived classes, if you were to pass in Actor as the class you basically get ALL things in the level… probably not what you are looking for) The function is often feared and avoided as it’s not a very efficient way of interacting with your environment, but sometimes it’s the only tool you got.
+One especially useful function you may use when prototyping or getting to grips with the engine is UGameplayStatics::GetAllActorsOfClass(…) this lets you grab an array of all actors of the class you pass in (including the derived classes, if you were to pass in Actor as the class you get ALL things in the level… probably not what you are looking for) The function is often feared and avoided as it’s not a very efficient way of interacting with your environment, but sometimes it’s the only tool you got.
 
-Actors don’t actually own a translation,rotation or scale. This is all set and retrieved via the RootComponent, eg. the top-level component in the hierarchy of SceneComponents (see below for more on SceneComponents) the very commonly used functions like MyActor->GetActorLocation() actually go into the RootComponent and returns its world location.
+Actors don’t actually own a translation, rotation or scale. This is all set and retrieved via the RootComponent, eg. the top-level component in the hierarchy of SceneComponents (see below for more on SceneComponents) the very commonly used functions like MyActor->GetActorLocation() actually go into the RootComponent and returns its world location.
 
 Here are some additional useful functions you will use within the context of an Actor:
 
-* **BeginPlay** // The ‘first’ function to be called once the Actor has spawned and is completely initialized. This is a good place to setup basic logic, a timer, or change some properties now that its fully initialized and can query its surroundings.  
-* **Tick** // Called every frame, for most Actors this will eventually be turned off for performance reason, but its enabled by default. Great for setting up dynamic logic quickly and checking stuff in a per-frame basis. Eventually you will find yourself moving more code to event-based logic or running timers to performance logic on lower frequencies.  
+* **BeginPlay** // The ‘first’ function to be called once the Actor has spawned and is completely initialized. This is a good place to setup basic logic, a timer, or change some properties now that it's fully initialized and can query its surroundings.  
+* **Tick** // Called every frame, for most Actors this will eventually be turned off for performance reasons, but it's enabled by default. Great for setting up dynamic logic quickly and checking stuff in a per-frame basis. Eventually, you will find yourself moving more code to event-based logic or running timers to performance logic on lower frequencies.  
 * **EndPlay** // Called when the Actor is being removed from the world including a ‘EEndPlayReason’ which specifies why it was called.  
 * **GetComponentByClass** // Find a single component instance of specific class, very useful when you don’t have the exact type of the Actor but know it must contain a certain component type. There is also GetComponentsByClass to return all instances of the class, not just the first one found.  
 * **GetActorLocation** // And all its variations, `*Rotation`, `*Scale` including SetActorLocation etc.  
