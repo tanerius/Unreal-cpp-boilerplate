@@ -52,7 +52,7 @@ Perhaps the most used class in your game. An Actor is the base for any object in
   
 Actor is the class you can network replicate (for multiplayer) and is easily done by calling SetReplicates(true) in your constructor. There is a lot that comes into play when dealing with effective networking in Actors, so I will not be able to cover that in this blog.  
   
-Actors support the concept receiving of damage out of the box. Damage can be applied directly to the Actor using MyActor->TakeDamage(…) or via UGameplayStatics::ApplyDamage(…) note there are variations available for PointDamage (eg. hitscan weapons) and RadialDamage for things like explosions. There is a great intro to [Damage in UE5!](https://www.unrealengine.com/en-US/blog/damage-in-UE5) on the official Unreal Engine site.  
+Actors support the concept receiving of damage out of the box. Damage can be applied directly to the Actor using MyActor->TakeDamage(…) or via UGameplayStatics::ApplyDamage(…) note there are variations available for PointDamage (eg. hitscan weapons) and RadialDamage for things like explosions. There is a great intro to [Damage in UE5!](https://dev.epicgames.com/documentation/en-us/unreal-engine/BlueprintAPI/Game/Damage) on the official Unreal Engine site.  
   
 You can easily spawn a new Actor instance in code by using `GetWorld()->SpawnActor<T>(…);` where T is the class to return, eg. AActor of one of your own types like AGadgetActor, AGameplayProp, etc.  
   
