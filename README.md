@@ -319,6 +319,6 @@ UGameplayStatics::WhateverFunction(); // static functions are easily accessed an
 
 Some further recommended reading for the gameplay framework and programming within Unreal Engine 5.  
   
-* [Gameplay Framework Documentation!](https://docs.unrealengine.com/en-US/Programming/UnrealArchitecture/Reference/Classes/index.html)
-* [Gameplay Programming Documentation!](https://docs.unrealengine.com/en-US/Programming/UnrealArchitecture/index.html)
-* [Actor Lifecycle Documentation!](https://docs.unrealengine.com/en-US/Programming/UnrealArchitecture/Actors/ActorLifecycle/index.html)
+* [Gameplay Framework Documentation!](https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-framework-in-unreal-engine)
+* [Gameplay Programming Documentation!](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-6-documentation)
+* [Actor Lifecycle Documentation!](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-actor-lifecycle)
